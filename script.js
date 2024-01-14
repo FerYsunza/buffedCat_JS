@@ -9,6 +9,7 @@ const playerSymbol = 'X';
 const computerSymbol = 'O';
 const minimaxScores = { 'Player': -10, 'Computer': 10, 'Draw': 0 };
 let gameScores = { 'Player': 0, 'Computer': 0, 'Draw': 0 };
+let gameOver = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     setupBoard();
@@ -24,10 +25,11 @@ function setupBoard() {
         cellElement.addEventListener('click', () => playerMove(index));
         boardElement.appendChild(cellElement);
     });
+    gameOver = false;
 }
 
 function playerMove(index) {
-    if (!board[index]) {
+    if (!board[index] && !gameOver) {
         makeMove(index, playerSymbol);
         if (!checkGameEnd(playerSymbol)) {
             computerMove();
@@ -103,9 +105,9 @@ function minimax(board, depth, isMaximizing) {
 
 function checkWinner() {
     const winningCombinations = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
-        [0, 4, 8], [2, 4, 6]             // diagonals
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
     ];
 
     for (let combination of winningCombinations) {
@@ -128,6 +130,7 @@ function checkGameEnd(symbol) {
         updateScores(winner);
         let message = winner === 'Draw' ? "It's a Draw!" : winner + ' wins!';
         setTimeout(() => alert(message), 100);
+        gameOver = true;
         return true;
     }
     return false;
