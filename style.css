@@ -50,7 +50,7 @@ h1 {
     font-size: 24px;
     cursor: pointer;
     border-radius: 8px;
-    color: #ffffff;
+    color: #ffffff; /* Default text color */
 }
 
 #new-game {

@@ -73,7 +73,7 @@ function findBestMove(board) {
 }
 
 function minimax(board, depth, isMaximizing) {
-    let result = checkWinner();
+    let result = checkWinner(false);
     if (result !== null) {
         return minimaxScores[result];
     }
@@ -103,7 +103,7 @@ function minimax(board, depth, isMaximizing) {
     }
 }
 
-function checkWinner() {
+function checkWinner(highlightWin) {
     const winningCombinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
@@ -113,6 +113,9 @@ function checkWinner() {
     for (let combination of winningCombinations) {
         const [a, b, c] = combination;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+            if (highlightWin) {
+                highlightWinningCombination(combination);
+            }
             return board[a] === playerSymbol ? 'Player' : 'Computer';
         }
     }
@@ -124,8 +127,15 @@ function checkWinner() {
     return null;
 }
 
+function highlightWinningCombination(combination) {
+    combination.forEach(index => {
+        const cell = document.querySelectorAll('.cell')[index];
+        cell.style.color = 'red'; // Change color to red for winning combination
+    });
+}
+
 function checkGameEnd(symbol) {
-    const winner = checkWinner();
+    const winner = checkWinner(true);
     if (winner !== null) {
         updateScores(winner);
         let message = winner === 'Draw' ? "It's a Draw!" : winner + ' wins!';
@@ -150,4 +160,7 @@ function updateScores(winner) {
 function newGame() {
     board.fill(null);
     setupBoard();
+    document.querySelectorAll('.cell').forEach(cell => {
+        cell.style.color = ''; // Reset color when starting a new game
+    });
 }
