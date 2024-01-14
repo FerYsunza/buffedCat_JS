@@ -1,3 +1,9 @@
+//
+// buffedCat_JS
+//
+// By Fer Ysunza, 13/01/24.
+//
+
 const board = Array(9).fill(null);
 const playerSymbol = 'X';
 const computerSymbol = 'O';
