@@ -73,3 +73,24 @@ h1 {
 #new-game:hover {
     background-color: #48484a;
 }
+
+/* Responsive styles for mobile devices */
+@media (max-width: 480px) {
+    #game {
+        width: 100%;
+        max-width: none;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .cell {
+        width: 60px;  /* Increase size for mobile */
+        height: 60px; /* Increase size for mobile */
+        font-size: 36px; /* Increase font size for better visibility */
+    }
+
+    #new-game {
+        font-size: 1.2em;
+        padding: 15px 30px;
+    }
+}
