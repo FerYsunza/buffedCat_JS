@@ -43,11 +43,15 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-top: 20px;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    aspect-ratio: 1; /* Ensures the board maintains a square aspect ratio */
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
+    width: 100%; /* Each cell takes full width of the column */
+    aspect-ratio: 1; /* Ensures each cell is a square */
     border: 2px solid #3a3a3c;
     background-color: #3a3a3c;
     display: flex;
@@ -76,16 +80,11 @@ h1 {
 
 /* Responsive styles for mobile devices */
 @media (max-width: 480px) {
-    #game {
-        width: 100%;
-        max-width: none;
-        padding: 10px;
-        box-sizing: border-box;
+    .board {
+        max-width: none; /* Allows the board to expand to the full width of the container */
     }
 
     .cell {
-        width: 60px;  /* Increase size for mobile */
-        height: 60px; /* Increase size for mobile */
         font-size: 36px; /* Increase font size for better visibility */
     }
 
