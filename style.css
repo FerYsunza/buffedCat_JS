@@ -50,7 +50,7 @@ h1 {
 }
 
 .cell {
-    width: 100%; /* Each cell takes full width of the column */
+    /* width: 100%; /* Each cell takes full width of the column */
     aspect-ratio: 1; /* Ensures each cell is a square */
     border: 2px solid #3a3a3c;
     background-color: #3a3a3c;
